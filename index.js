@@ -40,10 +40,7 @@ var processArgs = (function() {
 	return args;
 }());
 
-var combinedArgs = dextend({}, processEnv, processArgs);
-
 function configist(options) {
-	var args = (options && options.args) ? options.args : combinedArgs;
 	var self = {};
 	var configs = {};
 
@@ -55,11 +52,11 @@ function configist(options) {
 		var config = dextend({}, defaultConfig, envConfig);
 
 		for (var key in config) {
-			if (key in args) {
-				config[key] = args[key];
+			if (key in processEnv) {
+				config[key] = processEnv[key];
 			}
 		}
-		config.env = runningEnvironment;
+		dextend(config, processArgs, { env: runningEnvironment });
 
 		return dextend(self, config);
 	}
@@ -84,7 +81,7 @@ function configist(options) {
 
 	Object.defineProperty(self, 'use', { value: use });
 
-	return self;
+	return env();
 }
 
 module.exports = configist;
