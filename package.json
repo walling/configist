@@ -1,0 +1,14 @@
+{
+	"name": "configist",
+	"version": "0.1.0",
+	"description": "Easy deployment configuration.",
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/walling/configist.git"
+	},
+	"dependencies": {
+		"dextend": "0.1.x",
+		"minimist": "0.0.x"
+	},
+	"license": "MIT"
+}
