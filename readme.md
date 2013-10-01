@@ -75,3 +75,11 @@ configist.use('development', {
 
 console.log(configist);
 ```
+
+Happy hacking!
+
+By the way, you can install it:
+
+```bash
+npm install configist
+```
