@@ -1,6 +1,7 @@
 
-var dextend  = require('dextend');
 var minimist = require('minimist');
+var dextend = require('dextend');
+var util = require('util');
 
 var processEnv = (function() {
 	var env = {};
@@ -56,7 +57,7 @@ function configist(options) {
 		}
 		dextend(config, processArgs, { env: environment });
 
-		return dextend(self, config);
+		return util._extend(self, config);
 	}
 
 	function use(envName, config) {
