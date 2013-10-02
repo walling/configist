@@ -2,8 +2,6 @@
 var dextend  = require('dextend');
 var minimist = require('minimist');
 
-var runningEnvironment = ('' + [process.env.NODE_ENV]) || 'development';
-
 var processEnv = (function() {
 	var env = {};
 	for (var key in process.env) {
@@ -45,7 +43,7 @@ function configist(options) {
 	var configs = {};
 
 	function env(environment) {
-		environment = environment || runningEnvironment;
+		environment = environment || ('' + [process.env.NODE_ENV]) || 'development';
 
 		var defaultConfig = configs[''] || {};
 		var envConfig = configs[environment] || {};
@@ -56,7 +54,7 @@ function configist(options) {
 				config[key] = processEnv[key];
 			}
 		}
-		dextend(config, processArgs, { env: runningEnvironment });
+		dextend(config, processArgs, { env: environment });
 
 		return dextend(self, config);
 	}
